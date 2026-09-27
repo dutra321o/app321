@@ -122,65 +122,106 @@ footer{text-align:center;color:#64748b;padding:20px;font-size:13px}
 
 const SUPABASE_URL = 'https://grndwpphocblvjqwtbeh.supabase.co';
 const SUPABASE_PUBLISHABLE_KEY = 'sb_publishable_m4iiIfopXqvYC04bHJKHsQ_5Pdpx487';
-const sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY);
+let sb = null;
+let authReady = false;
 
 function setAuthMsg(msg, ok=false){
   const el=document.getElementById('authMsg');
+  if(!el) return;
   el.textContent=msg;
   el.style.color=ok?'#178a55':'#b42318';
 }
 
+function initSupabase(){
+  if(authReady) return true;
+  if(!window.supabase || typeof window.supabase.createClient !== 'function'){
+    setAuthMsg('Não foi possível carregar o sistema de acesso. Recarregue a página.');
+    return false;
+  }
+  try{
+    sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY);
+    authReady = true;
+    sb.auth.onAuthStateChange((_event,_session)=>{ checkAccess(); });
+    checkAccess();
+    return true;
+  }catch(e){
+    console.error('Supabase:', e);
+    setAuthMsg('Erro ao iniciar o sistema de acesso. Recarregue a página.');
+    return false;
+  }
+}
+
 async function login(){
+  if(!initSupabase()) return;
   const email=document.getElementById('authEmail').value.trim();
   const password=document.getElementById('authPassword').value;
   if(!email||!password) return setAuthMsg('Informe e-mail e senha.');
   setAuthMsg('Entrando...', true);
-  const {error}=await sb.auth.signInWithPassword({email,password});
-  if(error) return setAuthMsg(error.message);
-  await checkAccess();
+  try{
+    const {error}=await sb.auth.signInWithPassword({email,password});
+    if(error) return setAuthMsg(error.message);
+    await checkAccess();
+  }catch(e){
+    console.error(e);
+    setAuthMsg('Erro ao entrar. Verifique sua conexão e tente novamente.');
+  }
 }
 
 async function signup(){
+  if(!initSupabase()) return;
   const email=document.getElementById('authEmail').value.trim();
   const password=document.getElementById('authPassword').value;
   if(!email||!password) return setAuthMsg('Informe e-mail e senha.');
   if(password.length<6) return setAuthMsg('A senha precisa ter pelo menos 6 caracteres.');
   setAuthMsg('Criando acesso...', true);
-  const {data,error}=await sb.auth.signUp({email,password});
-  if(error) return setAuthMsg(error.message);
-  if(data.session) {
-    await checkAccess();
-  } else {
-    setAuthMsg('Cadastro criado. Confirme seu e-mail e depois entre. O acesso será liberado após a confirmação do pagamento.', true);
+  try{
+    const {data,error}=await sb.auth.signUp({email,password});
+    if(error) return setAuthMsg(error.message);
+    if(data.session) {
+      await checkAccess();
+    } else {
+      setAuthMsg('Cadastro criado. Confirme seu e-mail e depois entre. O acesso será liberado após a confirmação do pagamento.', true);
+    }
+  }catch(e){
+    console.error(e);
+    setAuthMsg('Erro ao criar acesso. Verifique sua conexão e tente novamente.');
   }
 }
 
 async function checkAccess(){
-  const {data:{session}}=await sb.auth.getSession();
-  if(!session){
+  if(!sb && !initSupabase()) return;
+  try{
+    const {data:{session}}=await sb.auth.getSession();
+    if(!session){
+      document.getElementById('authGate').style.display='flex';
+      return;
+    }
+    const {data,error}=await sb.from('acessos').select('ativo').eq('user_id',session.user.id).maybeSingle();
+    if(error){
+      document.getElementById('authGate').style.display='flex';
+      return setAuthMsg('A tabela de acesso ainda precisa ser configurada no Supabase.');
+    }
+    document.getElementById('authGate').style.display='none';
+    if(data?.ativo===true){
+      document.getElementById('locked').style.display='none';
+      document.body.style.overflow='';
+    }else{
+      document.getElementById('locked').style.display='flex';
+    }
+  }catch(e){
+    console.error(e);
     document.getElementById('authGate').style.display='flex';
-    return;
-  }
-  const {data,error}=await sb.from('acessos').select('ativo').eq('user_id',session.user.id).maybeSingle();
-  if(error){
-    document.getElementById('authGate').style.display='flex';
-    return setAuthMsg('A tabela de acesso ainda precisa ser configurada no Supabase.');
-  }
-  document.getElementById('authGate').style.display='none';
-  if(data?.ativo===true){
-    document.getElementById('locked').style.display='none';
-    document.body.style.overflow='';
-  }else{
-    document.getElementById('locked').style.display='flex';
+    setAuthMsg('Erro de conexão com o sistema de acesso. Recarregue a página.');
   }
 }
 
 async function logout(){
+  if(!sb && !initSupabase()) return;
   await sb.auth.signOut();
   location.reload();
 }
 
-sb.auth.onAuthStateChange((_event,_session)=>{ checkAccess(); });
+window.addEventListener('load', initSupabase);
 
 const fmt=n=>new Intl.NumberFormat('pt-BR',{style:'currency',currency:'BRL'}).format(Number(n)||0);
 let debts=JSON.parse(localStorage.getItem('321debts')||'[]');
