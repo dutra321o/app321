@@ -1,240 +1,674 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Estratégia 3-2-1 | Meu Plano</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Estratégia 3-2-1 — O Plano para Sair das Dívidas</title>
+<meta name="description" content="Método Financeiro 3-2-1 para organizar suas finanças e estruturar um plano de quitação.">
+
 <style>
-:root{--n:#0b1f33;--b:#165a9c;--g:#f2b705;--bg:#f4f7fb;--l:#dbe3ec;--t:#17212b}
-*{box-sizing:border-box}body{margin:0;font-family:Arial,sans-serif;background:var(--bg);color:var(--t)}
-header{background:var(--n);color:white;padding:20px;position:sticky;top:0;z-index:5}.brand{font-size:22px;font-weight:800}.brand b{color:var(--g)}
-nav{display:flex;gap:7px;overflow:auto;padding:10px;background:white;border-bottom:1px solid var(--l);position:sticky;top:68px;z-index:4}nav button{border:0;padding:10px 13px;border-radius:9px;font-weight:700;white-space:nowrap}nav .on{background:var(--b);color:white}
-main{max-width:1000px;margin:auto;padding:20px 15px 50px}.screen{display:none}.screen.on{display:block}
-.hero,.card{border-radius:16px;padding:20px;margin-bottom:14px}.hero{background:linear-gradient(135deg,var(--n),#174d7d);color:white}.card{background:white;border:1px solid var(--l);box-shadow:0 3px 12px #0000000a}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:12px}.big{font-size:27px;font-weight:800;color:var(--b)}
-input{width:100%;padding:11px;border:1px solid #cbd5e1;border-radius:9px;font-size:16px}label{display:block;font-weight:700;margin:8px 0 5px}
-.row{display:flex;gap:10px;flex-wrap:wrap}.row>div{flex:1;min-width:180px}
-button.action{background:var(--g);border:0;padding:11px 16px;border-radius:9px;font-weight:800;cursor:pointer}
-button.blue{background:var(--b);color:white;border:0;padding:11px 16px;border-radius:9px;font-weight:800}
-table{width:100%;border-collapse:collapse}th,td{padding:9px;border-bottom:1px solid var(--l);text-align:left}.muted{color:#64748b}
-.progress{height:14px;background:#e5e7eb;border-radius:20px;overflow:hidden}.bar{height:100%;background:#178a55;width:0}
-.check{padding:11px 0;border-bottom:1px solid var(--l)}.check input{width:auto}.month{border-left:5px solid var(--b)}
-footer{text-align:center;color:#64748b;padding:20px;font-size:13px}
+:root{
+--dark:#071b18;--dark2:#0d2a25;--green:#b7f34a;--bg:#f6f8f7;
+--white:#fff;--text:#10201d;--muted:#61716c;--line:#dfe8e4;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:Arial,Helvetica,sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
+a{text-decoration:none}
+.container{width:min(1100px,calc(100% - 36px));margin:auto}
+
+.timerbar{
+position:sticky;top:0;z-index:20;background:var(--dark);
+color:#fff;padding:10px;text-align:center;font-weight:bold
+}
+.timer{color:var(--green);font-size:20px;margin-left:8px}
+
+.hero{
+background:linear-gradient(135deg,#071b18,#174d41);
+color:#fff;padding:35px 0 75px
+}
+.topbar{
+display:flex;justify-content:space-between;align-items:center;
+margin-bottom:50px;font-weight:bold
+}
+.topbar a{color:#fff}
+.heroGrid{
+display:grid;grid-template-columns:1fr 1fr;gap:45px;align-items:center
+}
+.tag{
+display:inline-block;background:var(--green);color:#10201d;
+padding:8px 15px;border-radius:30px;font-weight:bold;font-size:13px
+}
+h1{
+font-size:clamp(40px,6vw,68px);
+line-height:1;margin:20px 0
+}
+h1 em{color:var(--green);font-style:normal}
+.lead{font-size:20px;color:#dbe7e3}
+.cta{
+display:inline-block;background:var(--green);color:#10201d;
+font-weight:bold;padding:16px 25px;border-radius:10px;margin-top:15px
+}
+.micro{font-size:12px;color:#b7c8c3;margin-top:10px}
+
+.visual{
+background:#fff;color:var(--text);padding:18px;border-radius:20px
+}
+.visualTop{
+background:var(--dark);color:#fff;border-radius:16px;padding:30px
+}
+.visualNumber{
+font-size:70px;font-weight:bold;color:var(--green);line-height:1
+}
+.visualTop h2{font-size:30px;line-height:1.1}
+.visualBottom{
+display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:12px
+}
+.visualItem{
+background:#eef5f2;padding:12px;text-align:center;
+border-radius:8px;font-weight:bold;font-size:12px
+}
+.visualNote{text-align:center;font-size:12px;color:#61716c;margin-top:10px}
+
+section{padding:70px 0}
+.sectionHead{text-align:center;max-width:850px;margin:0 auto 40px}
+.sectionHead h2{
+font-size:clamp(30px,4vw,44px);line-height:1.1
+}
+.sectionHead p{color:var(--muted);font-size:17px}
+
+.cards,.steps,.bumpGrid{
+display:grid;grid-template-columns:repeat(3,1fr);gap:18px
+}
+.card,.listCard{
+background:#fff;border:1px solid var(--line);
+border-radius:18px;padding:27px
+}
+.card h3{font-size:21px}
+.card p{color:var(--muted)}
+
+.darkSection{background:var(--dark);color:#fff}
+.darkSection .sectionHead p{color:#c7d7d2}
+
+.step{
+background:#10342d;border:1px solid #245248;
+border-radius:20px;padding:30px
+}
+.stepNum{
+width:50px;height:50px;border-radius:50%;
+background:var(--green);color:#10201d;
+display:flex;align-items:center;justify-content:center;
+font-weight:bold;font-size:20px
+}
+
+.two,.value{
+display:grid;grid-template-columns:1fr 1fr;gap:20px
+}
+
+.list{list-style:none;padding:0}
+.list li{
+padding:11px 0;border-bottom:1px solid var(--line)
+}
+.list li:before{
+content:"✓";color:#4c8c24;font-weight:bold;margin-right:10px
+}
+
+.bonus{
+background:#fff9e5;border:2px solid #e7bc52
+}
+
+.bumpGrid{grid-template-columns:repeat(2,1fr)}
+.bumpNo{
+display:inline-block;background:#eaf4e3;
+color:#426e27;padding:5px 9px;border-radius:7px;
+font-size:12px;font-weight:bold
+}
+
+.total{
+background:var(--dark);color:#fff;border-radius:20px;
+padding:30px;text-align:center;margin-top:20px
+}
+.total .big{
+font-size:55px;font-weight:bold;color:var(--green)
+}
+
+.guarantee{
+background:#eef8df;border:2px solid #a8ce6e;
+border-radius:20px;padding:30px;text-align:center
+}
+
+.offer{
+background:linear-gradient(135deg,var(--dark),var(--dark2));
+color:#fff;border-radius:25px;padding:45px 25px;
+text-align:center;max-width:800px;margin:auto
+}
+.offer h2{font-size:38px}
+.price{
+font-size:60px;font-weight:bold;color:var(--green)
+}
+.offer p{color:#d3dfdc}
+.secure{font-size:12px;color:#aabbb6;margin-top:12px}
+
+.faq{max-width:850px;margin:auto}
+details{
+background:#fff;border:1px solid var(--line);
+border-radius:12px;margin:10px 0;padding:17px
+}
+summary{font-weight:bold;cursor:pointer}
+
+.final{
+background:#eaffbf;text-align:center
+}
+.final h2{font-size:42px;line-height:1}
+
+footer{
+background:#051411;color:#9eafaa;
+text-align:center;padding:30px
+}
+
+@media(max-width:820px){
+.heroGrid,.two,.value{grid-template-columns:1fr}
+.cards,.steps,.bumpGrid{grid-template-columns:1fr}
+.topbar{margin-bottom:35px}
+}
 </style>
-<style>
-#authGate{position:fixed;inset:0;background:#0b1f33;display:flex;align-items:center;justify-content:center;padding:20px;z-index:9999}
-#authCard{width:min(430px,100%);background:white;border-radius:18px;padding:28px;box-shadow:0 20px 60px #0008}
-#authCard h1{margin-top:0;color:#0b1f33}
-#authCard .authInput{width:100%;padding:12px;margin:7px 0;border:1px solid #cbd5e1;border-radius:9px;font-size:16px}
-#authCard button{width:100%;margin-top:10px}
-#authMsg{min-height:24px;margin-top:12px;font-weight:700}
-#locked{display:none}
-</style>
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
+
 <body>
-<div id="authGate">
-  <div id="authCard">
-    <h1>Estratégia 3-2-1</h1>
-    <p>Área exclusiva para clientes.</p>
-    <input id="authEmail" class="authInput" type="email" placeholder="Seu e-mail">
-    <input id="authPassword" class="authInput" type="password" placeholder="Sua senha">
-    <button class="blue" onclick="login()">Entrar</button>
-    <button class="action" onclick="signup()">Criar acesso</button>
-    <p id="authMsg"></p>
-  </div>
-</div>
-<div id="locked" style="position:fixed;inset:0;background:#f4f7fb;z-index:9998;display:none;align-items:center;justify-content:center;padding:20px;text-align:center">
-  <div class="card" style="max-width:520px">
-    <h2>Acesso ainda não liberado</h2>
-    <p>Seu cadastro foi encontrado, mas o acesso ao Método 3-2-1 ainda não está ativo.</p>
-    <button class="blue" onclick="logout()">Sair</button>
-  </div>
-</div>
-<header><div class="brand">Estratégia <b>3-2-1</b></div><small>Meu plano para sair das dívidas</small></header>
-<nav>
-<button class="on" onclick="show('inicio',this)">Início</button>
-<button onclick="show('dividas',this)">Dívidas</button>
-<button onclick="show('raiox',this)">Raio-X</button>
-<button onclick="show('dias',this)">7 Dias</button>
-<button onclick="show('metodo',this)">3-2-1</button>
-<button onclick="show('plano',this)">12 Meses</button>
-</nav>
-<main>
 
-<section id="inicio" class="screen on">
-<div class="hero"><h1>Seu plano financeiro começa aqui.</h1><p>Organize suas dívidas, defina suas metas e acompanhe seu progresso.</p></div>
-<div class="grid">
-<div class="card"><h3>Dívida total</h3><div class="big" id="total">R$ 0,00</div></div>
-<div class="card"><h3>Meta mensal</h3><div class="big" id="mensal">R$ 0,00</div></div>
-<div class="card"><h3>Meta semanal</h3><div class="big" id="semanal">R$ 0,00</div></div>
+<div class="timerbar">
+Seu primeiro passo pode começar agora:
+<span class="timer" id="timer">15:00</span>
 </div>
-<div class="card"><h3>Progresso</h3><div class="progress"><div id="bar" class="bar"></div></div><p id="prog" class="muted">Cadastre suas dívidas para começar.</p></div>
-<div class="grid">
-<div class="card"><b>3 PASSOS</b><p>Reorganizar → Negociar → Automatizar.</p></div>
-<div class="card"><b>2 REGRAS</b><p>Não criar novas dívidas. Dinheiro economizado → dívida.</p></div>
-<div class="card"><b>1 RITUAL</b><p>20 minutos por semana para revisar gastos, saldos e progresso.</p></div>
+
+<header class="hero">
+<div class="container">
+
+<div class="topbar">
+<div>ESTRATÉGIA 3-2-1</div>
+<a href="#comprar">VER A OFERTA</a>
+</div>
+
+<div class="heroGrid">
+
+<div>
+<span class="tag">PLANO PRÁTICO • 12 MESES</span>
+
+<h1>
+Você não precisa resolver todas as suas dívidas hoje.
+<em>Precisa de um plano.</em>
+</h1>
+
+<p class="lead">
+<strong>Estratégia 3-2-1: O Plano para Sair das Dívidas</strong>
+— um plano para organizar suas finanças, estruturar negociações
+e criar uma rotina de acompanhamento.
+</p>
+
+<a class="cta" href="#comprar">
+QUERO CONHECER O MÉTODO →
+</a>
+
+<div class="micro">
+Material digital • Pagamento único • Bônus incluído
+</div>
+</div>
+
+<div class="visual">
+
+<div class="visualTop">
+<div class="visualNumber">3-2-1</div>
+<h2>O Plano para Sair das Dívidas</h2>
+<p>Reorganizar • Negociar • Automatizar</p>
+</div>
+
+<div class="visualBottom">
+<div class="visualItem">RAIO-X</div>
+<div class="visualItem">NEGOCIAÇÃO</div>
+<div class="visualItem">12 MESES</div>
+</div>
+
+<div class="visualNote">
+Estrutura baseada no Método Financeiro 3-2-1.
+</div>
+
+</div>
+</div>
+</div>
+</header>
+
+<section>
+<div class="container">
+
+<div class="sectionHead">
+<h2>O material Estratégia 3-2-1 é para você que:</h2>
+<p>
+Se você se reconhece em algum destes pontos,
+o material foi estruturado para ajudar a transformar
+o problema em um plano de ação.
+</p>
+</div>
+
+<div class="cards">
+
+<div class="card">
+<h3>📊 Precisa organizar</h3>
+<p>
+Sabe que possui dívidas, mas não consegue visualizar
+claramente toda a sua situação financeira.
+</p>
+</div>
+
+<div class="card">
+<h3>🔥 Vive apagando incêndios</h3>
+<p>
+Paga uma conta e outra acaba ficando para depois,
+criando um ciclo difícil de controlar.
+</p>
+</div>
+
+<div class="card">
+<h3>🎯 Precisa de um plano</h3>
+<p>
+Quer transformar sua situação financeira em ações
+organizadas e acompanháveis.
+</p>
+</div>
+
+</div>
 </div>
 </section>
 
-<section id="dividas" class="screen">
-<h2>Minhas dívidas</h2><p class="muted">Cadastre valor e juros mensais. A lista é ordenada pela maior taxa.</p>
-<div class="card"><div class="row">
-<div><label>Nome</label><input id="dn" placeholder="Cartão de crédito"></div>
-<div><label>Valor</label><input id="dv" type="number" step=".01"></div>
-<div><label>Juros/mês (%)</label><input id="dr" type="number" step=".01"></div>
-<div><button class="action" onclick="add()">Adicionar</button></div>
-</div></div>
-<div class="card"><table><thead><tr><th>Dívida</th><th>Valor</th><th>Juros</th><th></th></tr></thead><tbody id="list"></tbody></table></div>
-</section>
+<section class="darkSection">
+<div class="container">
 
-<section id="raiox" class="screen">
-<h2>Raio-X Financeiro</h2><p class="muted">Registre os gastos nas três categorias.</p>
-<div class="grid">
-<div class="card"><h3>Fixos essenciais</h3><input id="fix" type="number" step=".01"></div>
-<div class="card"><h3>Variáveis essenciais</h3><input id="var" type="number" step=".01"></div>
-<div class="card"><h3>Supérfluos</h3><input id="sup" type="number" step=".01"></div>
+<div class="sectionHead">
+<h2>3 passos, 2 regras e 1 ritual</h2>
+<p>
+O método organiza sua jornada em uma sequência prática.
+</p>
 </div>
-<button class="blue" onclick="saveRay()">Salvar Raio-X</button>
-<div class="card"><h3>Total registrado</h3><div class="big" id="rayTotal">R$ 0,00</div></div>
-</section>
 
-<section id="dias" class="screen">
-<h2>Plano de 7 Dias</h2><div class="card" id="checks"></div>
-</section>
+<div class="steps">
 
-<section id="metodo" class="screen">
-<div class="hero"><h1>O Método 3-2-1</h1><p>Uma estrutura simples para organizar, negociar e automatizar.</p></div>
-<div class="grid">
-<div class="card"><h2>3 Passos</h2><p><b>1. Reorganizar</b> — encontrar vazamentos.</p><p><b>2. Negociar</b> — reduzir o peso das dívidas.</p><p><b>3. Automatizar</b> — programar o fluxo.</p></div>
-<div class="card"><h2>2 Regras</h2><p>Não criar novas dívidas.</p><p>O dinheiro economizado vai para a dívida.</p></div>
-<div class="card"><h2>1 Ritual</h2><p>20 minutos por semana para revisar gastos, saldos e progresso.</p></div>
+<div class="step">
+<div class="stepNum">3</div>
+<h3>Três passos</h3>
+<p>
+Reorganizar suas finanças,
+negociar e quitar suas dívidas,
+automatizar e acelerar sua quitação.
+</p>
 </div>
-<div class="card"><h3>Roteiro de negociação</h3><p>“Estou com dificuldades e quero quitar minha dívida. Podem me ajudar?”</p><p>“Esse é o melhor valor que vocês podem fazer?”</p><button class="blue" onclick="navigator.clipboard.writeText('Estou com dificuldades e quero quitar minha dívida. Podem me ajudar?')">Copiar roteiro</button></div>
-<div class="card"><h3>Regra dos 10%</h3><p>Informe um dinheiro extra:</p><input id="extra" type="number" step=".01" oninput="extraCalc()"><p>10% para você: <b id="e10">R$ 0,00</b></p><p>90% para a dívida: <b id="e90">R$ 0,00</b></p></div>
+
+<div class="step">
+<div class="stepNum">2</div>
+<h3>Duas regras</h3>
+<p>
+Não criar novas dívidas e direcionar
+o dinheiro economizado para a quitação.
+</p>
+</div>
+
+<div class="step">
+<div class="stepNum">1</div>
+<h3>Um ritual</h3>
+<p>
+Uma revisão semanal de aproximadamente
+20 minutos para acompanhar despesas,
+saldo e evolução das dívidas.
+</p>
+</div>
+
+</div>
+</div>
 </section>
 
-<section id="plano" class="screen"><h2>Plano de 12 Meses</h2><div id="months"></div></section>
-</main>
-<footer>Estratégia 3-2-1 — ferramenta de acompanhamento baseada no conteúdo do e-book.</footer>
+<section>
+<div class="container">
+
+<div class="sectionHead">
+<h2>Você escolhe como aprender</h2>
+<p>
+O Método Financeiro 3-2-1 está disponível
+em três formatos.
+</p>
+</div>
+
+<div class="cards">
+
+<div class="card">
+<div style="font-size:35px">🎥</div>
+<h3>Videoaulas</h3>
+<p>
+Aulas em vídeo para acompanhar o método
+de forma prática e didática.
+</p>
+</div>
+
+<div class="card">
+<div style="font-size:35px">📘</div>
+<h3>E-book em PDF</h3>
+<p>
+Material completo em PDF para ler,
+consultar e revisar quando quiser.
+</p>
+</div>
+
+<div class="card">
+<div style="font-size:35px">🧩</div>
+<h3>E-book interativo</h3>
+<p>
+Conteúdo interativo com quizzes de
+perguntas e respostas.
+</p>
+</div>
+
+</div>
+</div>
+</section>
+
+<section>
+<div class="container">
+
+<div class="sectionHead">
+<h2>Reorganize suas finanças em 7 dias</h2>
+<p>
+O método começa colocando sua situação financeira
+no papel e transformando informações em decisões.
+</p>
+</div>
+
+<div class="two">
+
+<div class="listCard">
+<h3>Primeiro passo</h3>
+
+<ul class="list">
+<li>Faça seu Raio-X Financeiro</li>
+<li>Liste suas dívidas</li>
+<li>Organize juros e prazos</li>
+<li>Identifique gastos que podem ser reduzidos</li>
+<li>Defina uma meta mensal</li>
+</ul>
+
+</div>
+
+<div class="listCard">
+<h3>Depois</h3>
+
+<ul class="list">
+<li>Organize seu orçamento</li>
+<li>Crie limites para os gastos</li>
+<li>Defina prioridades</li>
+<li>Prepare sua estratégia de negociação</li>
+<li>Comece a acompanhar sua evolução</li>
+</ul>
+
+</div>
+
+</div>
+</div>
+</section>
+
+<section>
+<div class="container">
+
+<div class="sectionHead">
+<h2>Seu plano de 12 meses</h2>
+<p>
+Uma estrutura para acompanhar sua evolução
+ao longo do ano.
+</p>
+</div>
+
+<div class="two">
+
+<div class="listCard">
+<h3>Primeiros 6 meses</h3>
+
+<ul class="list">
+<li>Mês 1: diagnóstico e organização</li>
+<li>Mês 2: primeiras negociações</li>
+<li>Mês 3: automatização</li>
+<li>Mês 4: revisão do orçamento</li>
+<li>Mês 5: avanço na quitação</li>
+<li>Mês 6: revisão e ajustes</li>
+</ul>
+
+</div>
+
+<div class="listCard">
+<h3>Meses 7 a 12</h3>
+
+<ul class="list">
+<li>Mês 7: novas negociações</li>
+<li>Mês 8: manutenção do sistema</li>
+<li>Mês 9: antecipação quando possível</li>
+<li>Mês 10: revisão da reserva</li>
+<li>Mês 11: aceleração</li>
+<li>Mês 12: fechamento do ciclo</li>
+</ul>
+
+</div>
+
+</div>
+</div>
+</section>
+
+<section>
+<div class="container">
+
+<div class="sectionHead">
+<h2>🎁 Bônus exclusivo</h2>
+<p>
+Comece pelo diagnóstico antes de organizar todo o restante.
+</p>
+</div>
+
+<div class="listCard bonus">
+
+<h3>
+Checklist do Raio-X Financeiro:
+Diagnóstico Completo em 1 Tarde
+</h3>
+
+<p>
+Material complementar para mapear suas dívidas,
+organizar juros e prazos e definir os próximos passos.
+</p>
+
+<ul class="list">
+<li>Mapeamento das dívidas</li>
+<li>Organização de juros e prazos</li>
+<li>Diagnóstico financeiro</li>
+<li>Definição dos próximos passos</li>
+</ul>
+
+</div>
+</div>
+</section>
+
+<section>
+<div class="container">
+
+<div class="sectionHead">
+<h2>Quanto você recebe por R$ 27,00?</h2>
+<p>
+A oferta principal inclui o e-book e o bônus.
+</p>
+</div>
+
+<div class="value">
+
+<div class="listCard">
+<h3>📘 Produto principal</h3>
+<h3>Estratégia 3-2-1</h3>
+<p>
+Plano de 12 meses, reorganização em 7 dias,
+negociação, automação e acompanhamento.
+</p>
+<strong>R$ 27,00</strong>
+</div>
+
+<div class="listCard">
+<h3>🎁 Bônus incluído</h3>
+<h3>Checklist do Raio-X Financeiro</h3>
+<p>
+Diagnóstico para organizar suas dívidas,
+juros e prazos.
+</p>
+<strong>GRÁTIS</strong>
+</div>
+
+</div>
+
+<div class="total">
+<div>OFERTA PRINCIPAL</div>
+<div class="big">R$ 27,00</div>
+<div>Pagamento único • Bônus incluído</div>
+</div>
+
+</div>
+</section>
+
+<section id="comprar">
+<div class="container">
+
+<div class="offer">
+
+<span class="tag">ACESSO DIGITAL</span>
+
+<h2>Estratégia 3-2-1</h2>
+
+<p>
+O plano para organizar suas finanças,
+estruturar suas dívidas e criar uma rotina
+de acompanhamento.
+</p>
+
+<div class="price">R$ 27,00</div>
+
+<p>Pagamento único • Bônus incluído</p>
+
+<a
+class="cta"
+href="https://pay.kiwify.com.br/8mknN2V"
+target="_blank"
+rel="noopener">
+QUERO COMEÇAR AGORA →
+</a>
+
+<div class="secure">
+Pagamento e entrega realizados pela Kiwify.
+</div>
+
+</div>
+
+<p style="text-align:center;font-size:12px;color:#61716c;margin-top:25px">
+Este material tem finalidade educacional e de organização financeira.
+Ele não garante quitação de dívidas, redução de juros, aprovação
+de negociações ou resultados específicos.
+</p>
+
+</div>
+</section>
+
+<section>
+<div class="container">
+
+<div class="sectionHead">
+<h2>Perguntas frequentes</h2>
+</div>
+
+<div class="faq">
+
+<details>
+<summary>Como recebo o e-book?</summary>
+<p>
+Após a confirmação do pagamento, o acesso será disponibilizado
+conforme a configuração de entrega do produto na Kiwify.
+</p>
+</details>
+
+<details>
+<summary>O pagamento é único?</summary>
+<p>
+Sim. A oferta apresentada nesta página é de R$ 27,00
+em pagamento único.
+</p>
+</details>
+
+<details>
+<summary>O bônus está incluído?</summary>
+<p>
+Sim. O Checklist do Raio-X Financeiro está incluído
+na oferta principal.
+</p>
+</details>
+
+<details>
+<summary>Preciso entender de finanças?</summary>
+<p>
+Não. O material foi organizado em etapas práticas
+de diagnóstico, reorganização, negociação,
+automação e acompanhamento.
+</p>
+</details>
+
+<details>
+<summary>O método garante que minhas dívidas serão quitadas?</summary>
+<p>
+Não. O material apresenta uma estrutura de planejamento.
+Os resultados dependem da situação individual,
+dos valores das dívidas, renda, juros e execução do plano.
+</p>
+</details>
+
+</div>
+</div>
+</section>
+
+<section class="final">
+<div class="container">
+
+<h2>Você não precisa resolver tudo hoje.</h2>
+
+<p>
+Precisa apenas começar pelo próximo passo.
+</p>
+
+<a class="cta" href="#comprar">
+QUERO COMEÇAR AGORA →
+</a>
+
+</div>
+</section>
+
+<footer>
+Estratégia 3-2-1 — O Plano para Sair das Dívidas<br>
+Material digital para organização financeira.
+</footer>
 
 <script>
+(function(){
+let seconds=15*60;
+const el=document.getElementById("timer");
 
-const SUPABASE_URL = 'https://grndwpphocblvjqwtbeh.supabase.co';
-const SUPABASE_PUBLISHABLE_KEY = 'sb_publishable_m4iiIfopXqvYC04bHJKHsQ_5Pdpx487';
-let sb = null;
-let authReady = false;
+function tick(){
+let m=String(Math.floor(seconds/60)).padStart(2,"0");
+let s=String(seconds%60).padStart(2,"0");
+el.textContent=m+":"+s;
 
-function setAuthMsg(msg, ok=false){
-  const el=document.getElementById('authMsg');
-  if(!el) return;
-  el.textContent=msg;
-  el.style.color=ok?'#178a55':'#b42318';
+if(seconds>0){
+seconds--;
+}
 }
 
-function initSupabase(){
-  if(authReady) return true;
-  if(!window.supabase || typeof window.supabase.createClient !== 'function'){
-    setAuthMsg('Não foi possível carregar o sistema de acesso. Recarregue a página.');
-    return false;
-  }
-  try{
-    sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY);
-    authReady = true;
-    sb.auth.onAuthStateChange((_event,_session)=>{ checkAccess(); });
-    checkAccess();
-    return true;
-  }catch(e){
-    console.error('Supabase:', e);
-    setAuthMsg('Erro ao iniciar o sistema de acesso. Recarregue a página.');
-    return false;
-  }
-}
-
-async function login(){
-  if(!initSupabase()) return;
-  const email=document.getElementById('authEmail').value.trim();
-  const password=document.getElementById('authPassword').value;
-  if(!email||!password) return setAuthMsg('Informe e-mail e senha.');
-  setAuthMsg('Entrando...', true);
-  try{
-    const {error}=await sb.auth.signInWithPassword({email,password});
-    if(error) return setAuthMsg(error.message);
-    await checkAccess();
-  }catch(e){
-    console.error(e);
-    setAuthMsg('Erro ao entrar. Verifique sua conexão e tente novamente.');
-  }
-}
-
-async function signup(){
-  if(!initSupabase()) return;
-  const email=document.getElementById('authEmail').value.trim();
-  const password=document.getElementById('authPassword').value;
-  if(!email||!password) return setAuthMsg('Informe e-mail e senha.');
-  if(password.length<6) return setAuthMsg('A senha precisa ter pelo menos 6 caracteres.');
-  setAuthMsg('Criando acesso...', true);
-  try{
-    const {data,error}=await sb.auth.signUp({email,password});
-    if(error) return setAuthMsg(error.message);
-    if(data.session) {
-      await checkAccess();
-    } else {
-      setAuthMsg('Cadastro criado. Confirme seu e-mail e depois entre. O acesso será liberado após a confirmação do pagamento.', true);
-    }
-  }catch(e){
-    console.error(e);
-    setAuthMsg('Erro ao criar acesso. Verifique sua conexão e tente novamente.');
-  }
-}
-
-async function checkAccess(){
-  if(!sb && !initSupabase()) return;
-  try{
-    const {data:{session}}=await sb.auth.getSession();
-    if(!session){
-      document.getElementById('authGate').style.display='flex';
-      return;
-    }
-    const {data,error}=await sb.from('acessos').select('ativo').eq('user_id',session.user.id).maybeSingle();
-    if(error){
-      document.getElementById('authGate').style.display='flex';
-      return setAuthMsg('A tabela de acesso ainda precisa ser configurada no Supabase.');
-    }
-    document.getElementById('authGate').style.display='none';
-    if(data?.ativo===true){
-      document.getElementById('locked').style.display='none';
-      document.body.style.overflow='';
-    }else{
-      document.getElementById('locked').style.display='flex';
-    }
-  }catch(e){
-    console.error(e);
-    document.getElementById('authGate').style.display='flex';
-    setAuthMsg('Erro de conexão com o sistema de acesso. Recarregue a página.');
-  }
-}
-
-async function logout(){
-  if(!sb && !initSupabase()) return;
-  await sb.auth.signOut();
-  location.reload();
-}
-
-window.addEventListener('load', initSupabase);
-
-const fmt=n=>new Intl.NumberFormat('pt-BR',{style:'currency',currency:'BRL'}).format(Number(n)||0);
-let debts=JSON.parse(localStorage.getItem('321debts')||'[]');
-let ray=JSON.parse(localStorage.getItem('321ray')||'{"f":0,"v":0,"s":0}');
-let ck=JSON.parse(localStorage.getItem('321ck')||'[]');
-const tasks=['Listar todas as dívidas','Levantar os gastos dos últimos 30 dias','Cortar um gasto desnecessário','Separar principal, dívidas e emergência','Definir a meta mensal','Definir a meta semanal','Fazer a primeira ação'];
-const ms=[['Mês 1','Organize o diagnóstico, liste dívidas, taxas e valores, enxugue gastos e defina o valor mensal.'],['Mês 2','Negocie as duas primeiras dívidas do ranking.'],['Mês 3','Automatize pagamentos e transferências programadas.'],['Mês 4','Revise o orçamento e direcione sobra para a dívida com maior juro.'],['Mês 5','Ataque a terceira dívida e considere valores extras.'],['Mês 6','Faça uma pausa estratégica, avalie o progresso e ajuste.'],['Mês 7','Repita as negociações para as dívidas restantes.'],['Mês 8','Mantenha a automação e não crie novas dívidas.'],['Mês 9','Antecipe parcelas se possível, priorizando juros mais altos.'],['Mês 10','Revise a reserva e comece a guardar 10% do valor liberado.'],['Mês 11','Acelere a última dívida.'],['Mês 12','Feche o ciclo, faça o balanço e planeje os próximos objetivos.']];
-function show(id,b){document.querySelectorAll('.screen').forEach(x=>x.classList.remove('on'));document.getElementById(id).classList.add('on');document.querySelectorAll('nav button').forEach(x=>x.classList.remove('on'));b.classList.add('on');scrollTo(0,0)}
-function render(){debts.sort((a,b)=>b.r-a.r);list.innerHTML=debts.map((d,i)=>`<tr><td>${d.n}</td><td>${fmt(d.v)}</td><td>${d.r}%</td><td><button onclick="del(${i})">Excluir</button></td></tr>`).join('');let t=debts.reduce((s,d)=>s+d.v,0);total.textContent=fmt(t);mensal.textContent=fmt(t/12);semanal.textContent=fmt(t/48);fix.value=ray.f||'';var.value=ray.v||'';sup.value=ray.s||'';rayTotal.textContent=fmt(ray.f+ray.v+ray.s);let paid=+localStorage.getItem('321paid')||0,p=t?(paid/t*100):0;bar.style.width=Math.min(100,p)+'%';prog.textContent=t?`Pago: ${fmt(paid)} de ${fmt(t)} — ${p.toFixed(1)}%`:'Cadastre suas dívidas para começar.';checks.innerHTML=tasks.map((x,i)=>`<label class="check"><input type="checkbox" ${ck[i]?'checked':''} onchange="ck[i]=this.checked;localStorage.setItem('321ck',JSON.stringify(ck))"> ${x}</label>`).join('');months.innerHTML=ms.map(m=>`<div class="card month"><h3>${m[0]}</h3><p>${m[1]}</p></div>`).join('')}
-function add(){let n=dn.value.trim(),v=+dv.value,r=+dr.value||0;if(!n||v<=0)return alert('Informe nome e valor.');debts.push({n,v,r});localStorage.setItem('321debts',JSON.stringify(debts));dn.value=dv.value=dr.value='';render()}
-function del(i){debts.splice(i,1);localStorage.setItem('321debts',JSON.stringify(debts));render()}
-function saveRay(){ray={f:+fix.value||0,v:+var.value||0,s:+sup.value||0};localStorage.setItem('321ray',JSON.stringify(ray));render();alert('Raio-X salvo.')}
-function extraCalc(){let x=+extra.value||0;e10.textContent=fmt(x*.1);e90.textContent=fmt(x*.9)}
-render();
+tick();
+setInterval(tick,1000);
+})();
 </script>
-</body></html>
+
+</body>
+</html>
